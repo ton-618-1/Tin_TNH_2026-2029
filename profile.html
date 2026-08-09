@@ -19,7 +19,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         header {
             display: flex;
@@ -37,32 +37,35 @@
 
         .classroom-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
         .teacher-section { margin-bottom: 24px; }
-        .desk-teacher { width: 220px; background: var(--teacher-bg); border: 2px solid var(--teacher-border); color: #92400e; padding: 14px; border-radius: 8px; font-weight: bold; text-align: center; }
+        .desk-teacher { width: 200px; background: var(--teacher-bg); border: 2px solid var(--teacher-border); color: #92400e; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; }
 
-        .layout-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        /* Sơ đồ 4 dãy bàn */
+        .layout-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
         .column-block { display: flex; flex-direction: column; gap: 10px; }
         .column-title { text-align: center; font-weight: bold; color: var(--primary); padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
-        .double-column { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .double-column { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
         .desk-card {
             background: var(--desk-bg);
             border: 1.5px dashed var(--primary);
             border-radius: 6px;
-            padding: 10px 2px;
+            padding: 8px 2px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 52px;
+            min-height: 48px;
             text-decoration: none;
             color: var(--primary);
+            transition: all 0.2s ease;
         }
         .desk-card:hover { background: #dbeafe; border-style: solid; }
         .desk-number { font-size: 0.65rem; color: var(--text-sub); font-weight: 600; }
         .plus-icon { font-size: 1.1rem; font-weight: bold; line-height: 1; margin-top: 2px; }
 
-        @media (max-width: 768px) { .layout-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .layout-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .layout-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -77,10 +80,12 @@
         </header>
 
         <div class="classroom-container">
+            <!-- Bàn Giáo Viên (Góc trên bên trái) -->
             <div class="teacher-section">
                 <div class="desk-teacher">👩‍🏫 Bàn GV</div>
             </div>
 
+            <!-- Khung 4 Dãy Bàn -->
             <div class="layout-grid">
                 <!-- DÃY 1 -->
                 <div class="column-block">
@@ -123,6 +128,25 @@
                 <!-- DÃY 3 -->
                 <div class="column-block">
                     <div class="column-title">Dãy 3</div>
+                    <div class="double-column">
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-A</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-B</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-A</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-B</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-A</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-B</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-A</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-B</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-A</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-B</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-A</span><span class="plus-icon">+</span></a>
+                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-B</span><span class="plus-icon">+</span></a>
+                    </div>
+                </div>
+
+                <!-- DÃY 4 -->
+                <div class="column-block">
+                    <div class="column-title">Dãy 4</div>
                     <div class="double-column">
                         <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-A</span><span class="plus-icon">+</span></a>
                         <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-B</span><span class="plus-icon">+</span></a>
