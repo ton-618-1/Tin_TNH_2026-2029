@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lớp BF - Tech Portfolio</title>
+    <title>PF Tech Profile</title>
     <style>
         /* CSS Reset & Variables */
         :root {
@@ -151,11 +151,23 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 15px;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
         .btn:hover {
             background: #f1f5f9;
+        }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            color: #64748b;
+            cursor: not-allowed;
+        }
+
+        #status-msg {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         /* Footer */
@@ -173,48 +185,69 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <div class="logo-box">&lt;BF&gt;</div>
-            <h1>CLASS BF<span class="cursor">&nbsp;</span></h1>
-            <p class="subtitle">Trang thông tin & Dự án chính thức của lớp BF</p>
+            <div class="logo-box">&lt;PF&gt;</div>
+            <h1>PROFILE PF<span class="cursor">&nbsp;</span></h1>
+            <p class="subtitle">Trang thông tin & Dự án cá nhân (Profile)</p>
         </header>
 
         <!-- About Section -->
-        <h2 class="section-title"><span>&gt;</span> Hoạt động nổi bật</h2>
+        <h2 class="section-title"><span>&gt;</span> Thông tin nổi bật</h2>
         <div class="grid">
             <div class="card">
                 <h3>Lập trình & Công nghệ</h3>
-                <p>Nơi chia sẻ các dự án code, bài tập lớn và kiến thức lập trình của các thành viên trong lớp.</p>
+                <p>Tổng hợp các dự án code, sản phẩm cá nhân và kỹ năng kỹ thuật.</p>
             </div>
             <div class="card">
-                <h3>Sự kiện & Hoạt động</h3>
-                <p>Cập nhật lịch trình các buổi workshop, họp nhóm và các hoạt động ngoại khóa sắp tới.</p>
+                <h3>Hoạt động & Mục tiêu</h3>
+                <p>Cập nhật lịch trình cá nhân, kế hoạch học tập và công việc.</p>
             </div>
             <div class="card">
-                <h3>Thành viên</h3>
-                <p>Kết nối thông tin, profile và các kênh liên lạc của tất cả các thành viên lớp BF.</p>
+                <h3>Liên hệ & Profile</h3>
+                <p>Kết nối qua các kênh cá nhân, mạng xã hội và thông tin liên lạc.</p>
             </div>
         </div>
 
-        <!-- Interactive Section (JavaScript Demo) -->
+        <!-- Interactive Section (Daily Check-in) -->
         <div class="counter-section">
-            <h2>Điểm danh thành viên</h2>
-            <p>Số lượt truy cập / tương tác hôm nay:</p>
-            <h1 id="count" style="font-size: 3rem; margin: 10px 0;">0</h1>
-            <button class="btn" onclick="increaseCount()">Điểm danh ngay</button>
+            <h2>Điểm danh hôm nay</h2>
+            <p>Mỗi lượt truy cập chỉ được điểm danh 1 lần mỗi ngày</p>
+            <button class="btn" id="checkin-btn" onclick="dailyCheckIn()">Điểm danh ngay</button>
+            <p id="status-msg"></p>
         </div>
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2026 Class BF. Built with Minimalist Tech Style.</p>
+            <p>&copy; 2026 Personal Profile (PF). Built with Minimalist Tech Style.</p>
         </footer>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript Logic -->
     <script>
-        let counter = 0;
-        function increaseCount() {
-            counter++;
-            document.getElementById('count').innerText = counter;
+        const btn = document.getElementById('checkin-btn');
+        const statusMsg = document.getElementById('status-msg');
+
+        // Kiểm tra xem hôm nay đã điểm danh chưa khi tải trang
+        window.onload = function() {
+            const today = new Date().toDateString();
+            const lastCheckIn = localStorage.getItem('last_checkin_date');
+
+            if (lastCheckIn === today) {
+                setAlreadyCheckedIn();
+            }
+        };
+
+        function dailyCheckIn() {
+            const today = new Date().toDateString();
+            localStorage.setItem('last_checkin_date', today);
+            
+            setAlreadyCheckedIn();
+            alert('Điểm danh thành công cho ngày hôm nay!');
+        }
+
+        function setAlreadyCheckedIn() {
+            btn.disabled = true;
+            btn.innerText = 'Đã điểm danh hôm nay';
+            statusMsg.innerText = 'Bạn đã hoàn thành điểm danh hôm nay. Hãy quay lại vào ngày mai!';
         }
     </script>
 </body>
