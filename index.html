@@ -127,8 +127,10 @@
             text-align: center;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
+            text-decoration: none;
             min-height: 200px;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-add:hover {
@@ -155,24 +157,43 @@
             margin-bottom: 16px;
         }
 
-        /* Nút chung */
-        .btn {
+        /* Định dạng Nút liên kết chuẩn <a> */
+        .btn-link {
+            display: inline-block;
             background: var(--primary);
-            color: white;
-            border: none;
+            color: white !important;
+            text-decoration: none;
             padding: 10px 18px;
             border-radius: 8px;
             font-weight: 600;
-            cursor: pointer;
+            text-align: center;
             transition: all 0.2s;
             font-size: 0.95rem;
         }
 
-        .btn:hover {
+        .btn-link:hover {
             background: var(--primary-hover);
         }
 
-        .btn:disabled {
+        /* Nút điểm danh */
+        .btn-checkin {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-checkin:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-checkin:disabled {
             background: #cbd5e1;
             color: #64748b;
             cursor: not-allowed;
@@ -190,16 +211,6 @@
 
         .counter-section h2 {
             margin-bottom: 10px;
-        }
-
-        .counter-section .btn {
-            background: white;
-            color: var(--primary);
-            margin-top: 15px;
-        }
-
-        .counter-section .btn:hover {
-            background: #f1f5f9;
         }
 
         #status-msg {
@@ -236,7 +247,8 @@
                     <h3>Dự án & Code</h3>
                     <p>Tổng hợp các dự án lập trình, sản phẩm cá nhân và kỹ năng kỹ thuật.</p>
                 </div>
-                <button class="btn" onclick="openLink('https://github.com')">Xem dự án &rarr;</button>
+                <!-- Thay link href="..." bằng trang bạn muốn -->
+                <a href="https://github.com" target="_blank" class="btn-link">Xem dự án &rarr;</a>
             </div>
 
             <div class="card">
@@ -244,7 +256,8 @@
                     <h3>Mạng xã hội</h3>
                     <p>Kết nối và liên hệ qua các trang thông tin cá nhân chính thức.</p>
                 </div>
-                <button class="btn" onclick="openLink('https://facebook.com')">Ghé trang cá nhân &rarr;</button>
+                <!-- Thay link href="..." bằng trang Facebook/Zalo của bạn -->
+                <a href="https://facebook.com" target="_blank" class="btn-link">Ghé trang cá nhân &rarr;</a>
             </div>
 
             <!-- Nút Danh sách thành viên trong lớp -->
@@ -253,23 +266,24 @@
                     <h3>Liên hệ & Profile Lớp</h3>
                     <p>Danh sách profile và thông tin liên lạc của các thành viên trong lớp.</p>
                 </div>
-                <!-- Đổi đường link 'https://danh-sach-lop.com' thành trang thực tế của lớp bạn -->
-                <button class="btn" onclick="openLink('https://google.com')">Xem danh sách &rarr;</button>
+                <!-- Thay link href="..." bằng web danh sách thành viên -->
+                <a href="https://google.com" target="_blank" class="btn-link">Xem danh sách &rarr;</a>
             </div>
 
             <!-- Thẻ Dấu + để thêm Profile thành viên mới -->
-            <div class="card card-add" onclick="openLink('https://forms.google.com')">
+            <!-- Thay link href="..." bằng Google Forms để các bạn trong lớp điền thông tin -->
+            <a href="https://forms.google.com" target="_blank" class="card card-add">
                 <div class="add-icon">+</div>
                 <h3 style="margin: 0; color: var(--primary);">Thêm Profile mới</h3>
-                <p style="margin-top: 4px; font-size: 0.85rem;">Bấm vào đây để gửi thông tin cá nhân</p>
-            </div>
+                <p style="margin-top: 4px; font-size: 0.85rem; color: var(--text-sub);">Bấm vào đây để gửi thông tin cá nhân</p>
+            </a>
         </div>
 
         <!-- Interactive Section (Daily Check-in) -->
         <div class="counter-section">
             <h2>Điểm danh hôm nay</h2>
             <p>Mỗi lượt truy cập chỉ được điểm danh 1 lần mỗi ngày</p>
-            <button class="btn" id="checkin-btn" onclick="dailyCheckIn()">Điểm danh ngay</button>
+            <button class="btn-checkin" id="checkin-btn" onclick="dailyCheckIn()">Điểm danh ngay</button>
             <p id="status-msg"></p>
         </div>
 
@@ -279,14 +293,8 @@
         </footer>
     </div>
 
-    <!-- JavaScript Logic -->
+    <!-- JavaScript cho Điểm Danh -->
     <script>
-        // Hàm chuyển sang web khác ở tab mới
-        function openLink(url) {
-            window.open(url, '_blank');
-        }
-
-        // Logic điểm danh 1 lần/ngày
         const btn = document.getElementById('checkin-btn');
         const statusMsg = document.getElementById('status-msg');
 
