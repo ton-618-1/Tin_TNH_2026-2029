@@ -99,7 +99,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-bottom: 40px;
         }
@@ -118,6 +118,29 @@
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Thẻ đặc biệt dấu (+) để thêm profile */
+        .card-add {
+            border: 2px dashed var(--primary);
+            background: #f0fdf4;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            min-height: 200px;
+        }
+
+        .card-add:hover {
+            background: #dcfce7;
+        }
+
+        .add-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 8px;
         }
 
         .card h3 {
@@ -213,7 +236,6 @@
                     <h3>Dự án & Code</h3>
                     <p>Tổng hợp các dự án lập trình, sản phẩm cá nhân và kỹ năng kỹ thuật.</p>
                 </div>
-                <!-- Nút chuyển sang trang web khác (Ví dụ: GitHub / Web dự án) -->
                 <button class="btn" onclick="openLink('https://github.com')">Xem dự án &rarr;</button>
             </div>
 
@@ -222,17 +244,24 @@
                     <h3>Mạng xã hội</h3>
                     <p>Kết nối và liên hệ qua các trang thông tin cá nhân chính thức.</p>
                 </div>
-                <!-- Nút chuyển sang Facebook hoặc mạng xã hội -->
                 <button class="btn" onclick="openLink('https://facebook.com')">Ghé trang cá nhân &rarr;</button>
             </div>
 
+            <!-- Nút Danh sách thành viên trong lớp -->
             <div class="card">
                 <div>
-                    <h3>Tài liệu & Học tập</h3>
-                    <p>Nơi lưu trữ ghi chú, tài liệu tham khảo và kiến thức quan trọng.</p>
+                    <h3>Liên hệ & Profile Lớp</h3>
+                    <p>Danh sách profile và thông tin liên lạc của các thành viên trong lớp.</p>
                 </div>
-                <!-- Nút chuyển sang link tài liệu -->
-                <button class="btn" onclick="openLink('https://google.com')">Khám phá ngay &rarr;</button>
+                <!-- Đổi đường link 'https://danh-sach-lop.com' thành trang thực tế của lớp bạn -->
+                <button class="btn" onclick="openLink('https://google.com')">Xem danh sách &rarr;</button>
+            </div>
+
+            <!-- Thẻ Dấu + để thêm Profile thành viên mới -->
+            <div class="card card-add" onclick="openLink('https://forms.google.com')">
+                <div class="add-icon">+</div>
+                <h3 style="margin: 0; color: var(--primary);">Thêm Profile mới</h3>
+                <p style="margin-top: 4px; font-size: 0.85rem;">Bấm vào đây để gửi thông tin cá nhân</p>
             </div>
         </div>
 
