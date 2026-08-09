@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sơ Đồ Lớp Học</title>
+    <title>Sơ Đồ Lớp Học &amp; Điểm Danh</title>
     <style>
         :root {
             --bg-color: #f8fafc;
@@ -25,13 +25,24 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             padding-bottom: 16px;
             border-bottom: 2px solid var(--border);
         }
 
         .header-left { display: flex; align-items: center; gap: 12px; }
         .btn-back { background: #e2e8f0; color: var(--text-main); padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        
+        .btn-admin {
+            background: #cbd5e1;
+            color: #1e293b;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-admin.active { background: #ef4444; color: white; }
 
         .classroom-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
         .teacher-section { margin-bottom: 24px; }
@@ -46,24 +57,103 @@
         .desk-card {
             background: var(--desk-bg);
             border: 1.5px dashed var(--primary);
-            border-radius: 6px;
-            padding: 8px 2px;
+            border-radius: 8px;
+            padding: 8px 4px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 48px;
-            text-decoration: none;
-            color: var(--primary);
+            min-height: 70px;
+            cursor: pointer;
             transition: all 0.2s ease;
         }
-        .desk-card:hover { background: #dbeafe; border-style: solid; }
-        .desk-number { font-size: 0.65rem; color: var(--text-sub); font-weight: 600; }
-        .plus-icon { font-size: 1.1rem; font-weight: bold; line-height: 1; margin-top: 2px; }
+        .desk-card:hover { background: #dbeafe; }
+        .desk-card.has-data { border-style: solid; background: #ffffff; }
+
+        .desk-number { font-size: 0.65rem; color: var(--text-sub); font-weight: 700; }
+        .plus-icon { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        .student-avatar-mini { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-top: 4px; }
+        .student-name-mini { font-size: 0.75rem; font-weight: 700; color: #1e3a8a; margin-top: 2px; }
+
+        /* Giao diện Popup (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 550px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .close-btn { font-size: 1.5rem; cursor: pointer; border: none; background: none; }
+
+        /* Chia khung bên trái / bên phải */
+        .modal-body {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 20px;
+        }
+        
+        .avatar-upload-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .preview-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px dashed var(--border);
+            background: #f8fafc;
+        }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .btn-save {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
         @media (max-width: 900px) { .layout-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 500px) { .layout-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 550px) {
+            .modal-body { grid-template-columns: 1fr; }
+            .layout-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -74,94 +164,184 @@
                 <a href="index.html" class="btn-back">&larr; Trang chủ</a>
                 <h1>Sơ Đồ Lớp Học</h1>
             </div>
+            <button class="btn-admin" id="admin-toggle" onclick="toggleAdmin()">Admin: TẮT</button>
         </header>
 
         <div class="classroom-container">
-            <!-- Bàn Giáo Viên (Góc trên bên trái) -->
             <div class="teacher-section">
                 <div class="desk-teacher">👩‍🏫 Bàn GV</div>
             </div>
 
-            <!-- Khung 4 Dãy Bàn -->
-            <div class="layout-grid">
-                <!-- DÃY 1 -->
-                <div class="column-block">
-                    <div class="column-title">Dãy 1</div>
-                    <div class="double-column">
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-B</span><span class="plus-icon">+</span></a>
-                    </div>
+            <div class="layout-grid" id="classroom-grid"></div>
+        </div>
+    </div>
+
+    <!-- Hộp thoại Modal Nhập / Xem Thông Tin Profile -->
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Thông Tin Bàn Học</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- BÊN TRÁI: Ảnh đại diện -->
+                <div class="avatar-upload-box">
+                    <img id="img-preview" class="preview-img" src="https://via.placeholder.com/120?text=No+Image" alt="Avatar">
+                    <input type="file" id="img-input" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
+                    <button type="button" id="btn-upload" style="font-size:0.75rem; padding: 4px 8px;" onclick="document.getElementById('img-input').click()">Chọn ảnh</button>
                 </div>
 
-                <!-- DÃY 2 -->
-                <div class="column-block">
-                    <div class="column-title">Dãy 2</div>
-                    <div class="double-column">
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-B</span><span class="plus-icon">+</span></a>
+                <!-- BÊN PHẢI: Tên & Sở thích -->
+                <div>
+                    <div class="form-group">
+                        <label for="input-name">Họ và Tên</label>
+                        <input type="text" id="input-name" placeholder="Nhập tên học sinh...">
                     </div>
-                </div>
-
-                <!-- DÃY 3 -->
-                <div class="column-block">
-                    <div class="column-title">Dãy 3</div>
-                    <div class="double-column">
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-B</span><span class="plus-icon">+</span></a>
+                    <div class="form-group">
+                        <label for="input-hobby">Sở thích</label>
+                        <textarea id="input-hobby" rows="3" placeholder="Ví dụ: Đá bóng, Chơi game, Lập trình..."></textarea>
                     </div>
-                </div>
-
-                <!-- DÃY 4 -->
-                <div class="column-block">
-                    <div class="column-title">Dãy 4</div>
-                    <div class="double-column">
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">1-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">2-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">3-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">4-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">5-B</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-A</span><span class="plus-icon">+</span></a>
-                        <a href="https://forms.google.com" target="_blank" class="desk-card"><span class="desk-number">6-B</span><span class="plus-icon">+</span></a>
-                    </div>
+                    <button class="btn-save" id="btn-save" onclick="saveProfile()">Lưu Thông Tin</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        let isAdmin = false;
+        let activeDeskId = null;
+        let deskData = {};
+
+        const totalRows = 6;
+        const totalColumns = 4;
+        const gridContainer = document.getElementById('classroom-grid');
+
+        // Khởi tạo 4 dãy bàn
+        function initGrid() {
+            gridContainer.innerHTML = '';
+            for (let col = 1; col <= totalColumns; col++) {
+                const columnBlock = document.createElement('div');
+                columnBlock.className = 'column-block';
+                columnBlock.innerHTML = `<div class="column-title">Dãy ${col}</div>`;
+
+                const doubleColumn = document.createElement('div');
+                doubleColumn.className = 'double-column';
+
+                for (let row = 1; row <= totalRows; row++) {
+                    ['A', 'B'].forEach(pos => {
+                        const deskId = `${col}-${row}-${pos}`;
+                        const deskCard = document.createElement('div');
+                        deskCard.className = 'desk-card';
+                        deskCard.id = `desk-${deskId}`;
+                        deskCard.onclick = () => openModal(deskId, `${row}-${pos}`);
+
+                        updateDeskUI(deskCard, deskId, `${row}-${pos}`);
+                        doubleColumn.appendChild(deskCard);
+                    });
+                }
+                columnBlock.appendChild(doubleColumn);
+                gridContainer.appendChild(columnBlock);
+            }
+        }
+
+        // Cập nhật giao diện từng ô bàn
+        function updateDeskUI(card, deskId, label) {
+            const data = deskData[deskId];
+            if (data && data.name) {
+                card.classList.add('has-data');
+                card.innerHTML = `
+                    <span class="desk-number">${label}</span>
+                    <img src="${data.img || 'https://via.placeholder.com/32'}" class="student-avatar-mini">
+                    <span class="student-name-mini">${data.name}</span>
+                `;
+            } else {
+                card.classList.remove('has-data');
+                card.innerHTML = `
+                    <span class="desk-number">${label}</span>
+                    <span class="plus-icon">+</span>
+                `;
+            }
+        }
+
+        // Bật/Tắt Chế độ Admin với mật khẩu là tên cầu thủ yêu thích
+        function toggleAdmin() {
+            if (!isAdmin) {
+                const pass = prompt("Nhập mật khẩu Admin (Cầu thủ yêu thích nhất của chủ web là ai?):");
+                if (pass) {
+                    const normalizedPass = pass.trim().toLowerCase();
+                    if (normalizedPass === "zidane" || normalizedPass === "zinedine zidane") {
+                        isAdmin = true;
+                        document.getElementById('admin-toggle').innerText = "Admin: BẬT";
+                        document.getElementById('admin-toggle').classList.add('active');
+                        alert("Đã bật quyền Admin! Bạn có thể chỉnh sửa/thay đổi thông tin các bàn học.");
+                        return;
+                    }
+                }
+                alert("Sai mật khẩu!");
+            } else {
+                isAdmin = false;
+                document.getElementById('admin-toggle').innerText = "Admin: TẮT";
+                document.getElementById('admin-toggle').classList.remove('active');
+            }
+        }
+
+        // Mở Modal
+        function openModal(deskId, label) {
+            activeDeskId = deskId;
+            const data = deskData[deskId] || {};
+            const isFilled = !!data.name;
+
+            document.getElementById('modal-title').innerText = `Thông Tin Bàn ${label}`;
+            document.getElementById('input-name').value = data.name || '';
+            document.getElementById('input-hobby').value = data.hobby || '';
+            document.getElementById('img-preview').src = data.img || 'https://via.placeholder.com/120?text=No+Image';
+
+            const canEdit = !isFilled || isAdmin;
+            document.getElementById('input-name').disabled = !canEdit;
+            document.getElementById('input-hobby').disabled = !canEdit;
+            document.getElementById('btn-upload').style.display = canEdit ? 'block' : 'none';
+            document.getElementById('btn-save').style.display = canEdit ? 'block' : 'none';
+
+            document.getElementById('profile-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('profile-modal').style.display = 'none';
+        }
+
+        // Xử lý upload ảnh
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    document.getElementById('img-preview').src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Lưu thông tin học sinh
+        function saveProfile() {
+            const name = document.getElementById('input-name').value.trim();
+            const hobby = document.getElementById('input-hobby').value.trim();
+            const img = document.getElementById('img-preview').src;
+
+            if (!name) {
+                alert("Vui lòng nhập Họ tên!");
+                return;
+            }
+
+            deskData[activeDeskId] = { name, hobby, img };
+            const card = document.getElementById(`desk-${activeDeskId}`);
+            const parts = activeDeskId.split('-');
+            updateDeskUI(card, activeDeskId, `${parts[1]}-${parts[2]}`);
+
+            closeModal();
+        }
+
+        // Khởi chạy
+        initGrid();
+    </script>
 </body>
 </html>
