@@ -9,7 +9,7 @@
         :root {
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --primary: #1e40af; /* Xanh dương chủ đạo */
+            --primary: #1e40af;
             --primary-hover: #1d4ed8;
             --text-main: #0f172a;
             --text-sub: #64748b;
@@ -67,7 +67,6 @@
             letter-spacing: -0.025em;
         }
 
-        /* Cursor Blink Effect */
         .cursor {
             display: inline-block;
             width: 3px;
@@ -132,17 +131,9 @@
             margin-bottom: 16px;
         }
 
-        /* Khung nhóm nút bấm */
-        .btn-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        /* Nút liên kết chính */
         .btn-link {
-            flex: 1;
-            display: inline-block;
+            display: block;
+            width: 100%;
             background: var(--primary);
             color: white !important;
             text-decoration: none;
@@ -151,26 +142,27 @@
             font-weight: 600;
             text-align: center;
             transition: all 0.2s;
-            font-size: 0.9rem;
-            white-space: nowrap;
+            font-size: 0.95rem;
         }
 
         .btn-link:hover {
             background: var(--primary-hover);
         }
 
-        /* Nút viền + Thêm Profile */
-        .btn-add {
-            background: transparent;
-            color: var(--primary) !important;
-            border: 1px solid var(--primary);
+        /* Interactive Counter Section */
+        .counter-section {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .btn-add:hover {
-            background: #eff6ff;
+        .counter-section h2 {
+            margin-bottom: 10px;
         }
 
-        /* Nút điểm danh */
         .btn-checkin {
             background: white;
             color: var(--primary);
@@ -192,20 +184,6 @@
             background: #cbd5e1;
             color: #64748b;
             cursor: not-allowed;
-        }
-
-        /* Interactive Counter Section */
-        .counter-section {
-            background: var(--primary);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .counter-section h2 {
-            margin-bottom: 10px;
         }
 
         #status-msg {
@@ -253,17 +231,13 @@
                 <a href="https://facebook.com" target="_blank" class="btn-link">Ghé trang cá nhân &rarr;</a>
             </div>
 
-            <!-- Thẻ Liên hệ & Profile Lớp kết nối tới profile.html -->
+            <!-- Thẻ Liên hệ & Profile Lớp: Chỉ chứa 1 nút duy nhất -->
             <div class="card">
                 <div>
                     <h3>Liên hệ & Profile Lớp</h3>
                     <p>Danh sách profile và thông tin liên lạc của các thành viên trong lớp.</p>
                 </div>
-                <div class="btn-group">
-                    <!-- Liên kết thẳng tới file profile.html cùng repository -->
-                    <a href="profile.html" class="btn-link">Xem danh sách &rarr;</a>
-                    <a href="https://forms.google.com" target="_blank" class="btn-link btn-add">+ Thêm Profile</a>
-                </div>
+                <a href="profile.html" class="btn-link">Xem danh sách &rarr;</a>
             </div>
         </div>
 
@@ -281,7 +255,6 @@
         </footer>
     </div>
 
-    <!-- JavaScript cho Điểm Danh -->
     <script>
         const btn = document.getElementById('checkin-btn');
         const statusMsg = document.getElementById('status-msg');
