@@ -3,345 +3,488 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sơ Đồ Lớp Học &amp; Điểm Danh</title>
+    <title>Sơ Đồ Lớp 10 Tin - Profile & Điểm Danh</title>
+    
     <style>
         :root {
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --primary: #1e40af;
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --border: #cbd5e1;
-            --desk-bg: #eff6ff;
-            --teacher-bg: #fef3c7;
-            --teacher-border: #d97706;
+            --bg-color: #080b14;
+            --primary-glow: #a855f7;
+            --accent-cyan: #06b6d4;
+            --accent-magenta: #ec4899;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.15) 0px, transparent 40%),
+                radial-gradient(at 90% 90%, rgba(6, 182, 212, 0.12) 0px, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            color: var(--text-main);
+            padding: 30px 20px 60px 20px;
+            min-height: 100vh;
+        }
+
         .container { max-width: 1200px; margin: 0 auto; }
 
-        header {
+        /* THANH ĐIỀU HƯỚNG / HEADER */
+        .top-nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--border);
+            margin-bottom: 28px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .btn-back { background: #e2e8f0; color: var(--text-main); padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-        
-        .btn-admin {
-            background: #cbd5e1;
-            color: #1e293b;
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
             padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
-        .btn-admin.active { background: #ef4444; color: white; }
 
-        .classroom-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-        .teacher-section { margin-bottom: 24px; }
-        .desk-teacher { width: 200px; background: var(--teacher-bg); border: 2px solid var(--teacher-border); color: #92400e; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; }
+        .back-btn:hover {
+            background: rgba(168, 85, 247, 0.2);
+            color: #ffffff;
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
 
-        /* Sơ đồ 4 dãy bàn */
-        .layout-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        .column-block { display: flex; flex-direction: column; gap: 10px; }
-        .column-title { text-align: center; font-weight: bold; color: var(--primary); padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
-        .double-column { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .nav-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-        .desk-card {
-            background: var(--desk-bg);
-            border: 1.5px dashed var(--primary);
-            border-radius: 8px;
-            padding: 8px 4px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
+        /* NÚT LIQUID GLASS CHUNG */
+        .btn-liquid {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 70px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-liquid:hover {
+            background: rgba(168, 85, 247, 0.25);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* KHUNG BẢNG GIẢNG (BẢNG ĐEN CHUẨN TECH) */
+        .board-banner {
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 36px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px 0 rgba(112, 26, 117, 0.25);
+        }
+
+        .board-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #f472b6;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
+        }
+
+        /* LƯỚI 4 DÃY BÀN HỌC */
+        .seating-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .column-header {
+            text-align: center;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+        }
+
+        .desk-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .desk-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .desk-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+        }
+
+        .desk-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .btn-plus {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.5);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .desk-card:hover { background: #dbeafe; }
-        .desk-card.has-data { border-style: solid; background: #ffffff; }
 
-        .desk-number { font-size: 0.65rem; color: var(--text-sub); font-weight: 700; }
-        .plus-icon { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
-        .student-avatar-mini { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-top: 4px; }
-        .student-name-mini { font-size: 0.75rem; font-weight: 700; color: #1e3a8a; margin-top: 2px; }
+        .btn-plus:hover {
+            background: var(--primary-glow);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+            transform: scale(1.1);
+        }
 
-        /* Giao diện Popup (Modal) */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 550px;
-            padding: 24px;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .modal-header {
+        .student-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-        .close-btn { font-size: 1.5rem; cursor: pointer; border: none; background: none; }
-
-        /* Chia khung bên trái / bên phải */
-        .modal-body {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 20px;
-        }
-        
-        .avatar-upload-box {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 10px;
+            padding: 6px 0;
         }
-        .preview-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 8px;
+
+        .student-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 2px dashed var(--border);
-            background: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #1e293b;
         }
 
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.9rem;
+        .student-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #f1f5f9;
         }
 
-        .btn-save {
+        /* MODAL LIQUID GLASS HIỂN THỊ PROFILE */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(8, 11, 20, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 20px;
             width: 100%;
-            background: var(--primary);
-            color: white;
-            padding: 10px;
+            max-width: 600px;
+            padding: 28px;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(20px);
+            position: relative;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 20px;
+            background: none;
             border: none;
-            border-radius: 6px;
-            font-weight: 700;
+            color: var(--text-sub);
+            font-size: 1.5rem;
             cursor: pointer;
-            margin-top: 10px;
+            transition: color 0.2s;
         }
 
-        @media (max-width: 900px) { .layout-grid { grid-template-columns: repeat(2, 1fr); } }
+        .modal-close:hover { color: #ffffff; }
+
+        .modal-body {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .modal-avatar-box {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .modal-avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info { flex: 1; }
+
+        .modal-desk-title {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .modal-student-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .modal-hobby-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        .modal-hobby-box strong { color: #f472b6; }
+
+        @media (max-width: 900px) {
+            .seating-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 550px) {
-            .modal-body { grid-template-columns: 1fr; }
-            .layout-grid { grid-template-columns: 1fr; }
+            .seating-grid { grid-template-columns: 1fr; }
+            .modal-body { flex-direction: column; text-align: center; }
+            .modal-avatar-box { width: 120px; height: 120px; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <div class="header-left">
-                <a href="index.html" class="btn-back">&larr; Trang chủ</a>
-                <h1>Sơ Đồ Lớp Học</h1>
-            </div>
-            <button class="btn-admin" id="admin-toggle" onclick="toggleAdmin()">Admin: TẮT</button>
-        </header>
+        <!-- TOP NAV -->
+        <div class="top-nav">
+            <a href="index.html" class="back-btn">&larr; Trang Chủ</a>
+            <div class="nav-title">SƠ ĐỒ LỚP 10 TIN</div>
+            <button class="btn-liquid" onclick="openAdminModal()">Admin Edit</button>
+        </div>
 
-        <div class="classroom-container">
-            <div class="teacher-section">
-                <div class="desk-teacher">👩‍🏫 Bàn GV</div>
-            </div>
+        <!-- BẢNG GIẢNG -->
+        <div class="board-banner">
+            <div class="board-title">[ BẢNG GIẢNG BÀI - PHÍA TRÊN ]</div>
+        </div>
 
-            <div class="layout-grid" id="classroom-grid"></div>
+        <!-- SƠ ĐỒ 4 DÃY BÀN -->
+        <div class="seating-grid" id="seatingGrid">
+            <!-- Render từ Javascript -->
         </div>
     </div>
 
-    <!-- Hộp thoại Modal Nhập / Xem Thông Tin Profile -->
-    <div class="modal-overlay" id="profile-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Thông Tin Bàn Học</h3>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
+    <!-- MODAL XEM PROFILE -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeProfileModal()">&times;</button>
             <div class="modal-body">
-                <!-- BÊN TRÁI: Ảnh đại diện -->
-                <div class="avatar-upload-box">
-                    <img id="img-preview" class="preview-img" src="https://via.placeholder.com/120?text=No+Image" alt="Avatar">
-                    <input type="file" id="img-input" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
-                    <button type="button" id="btn-upload" style="font-size:0.75rem; padding: 4px 8px;" onclick="document.getElementById('img-input').click()">Chọn ảnh</button>
+                <div class="modal-avatar-box">
+                    <img id="modalImg" src="" alt="Student Avatar">
                 </div>
-
-                <!-- BÊN PHẢI: Tên & Sở thích -->
-                <div>
-                    <div class="form-group">
-                        <label for="input-name">Họ và Tên</label>
-                        <input type="text" id="input-name" placeholder="Nhập tên học sinh...">
+                <div class="modal-info">
+                    <div class="modal-desk-title" id="modalDeskName">BÀN 1 - DÃY 1</div>
+                    <div class="modal-student-name" id="modalStudentName">Học Sinh</div>
+                    <div class="modal-hobby-box">
+                        <strong>Sở thích:</strong> <span id="modalHobby">Lập trình, bóng đá, nghe nhạc.</span>
                     </div>
-                    <div class="form-group">
-                        <label for="input-hobby">Sở thích</label>
-                        <textarea id="input-hobby" rows="3" placeholder="Ví dụ: Đá bóng, Chơi game, Lập trình..."></textarea>
-                    </div>
-                    <button class="btn-save" id="btn-save" onclick="saveProfile()">Lưu Thông Tin</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let isAdmin = false;
-        let activeDeskId = null;
-        let deskData = {};
+        // Khởi tạo dữ liệu lớp học mặc định (24 bàn)
+        const defaultDesks = Array.from({ length: 24 }, (_, i) => ({
+            id: i + 1,
+            row: Math.floor(i / 6) + 1,
+            num: (i % 6) + 1,
+            name: `Học sinh Bàn ${i + 1}`,
+            avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=Student${i + 1}`,
+            hobby: "Yêu thích Tin học, giải mã thuật toán và các hoạt động của Lớp 10 Tin."
+        }));
 
-        const totalRows = 6;
-        const totalColumns = 4;
-        const gridContainer = document.getElementById('classroom-grid');
+        // Lấy dữ liệu đã lưu từ LocalStorage hoặc dùng mặc định
+        let desksData = JSON.parse(localStorage.getItem('class_desks_data')) || defaultDesks;
 
-        // Khởi tạo 4 dãy bàn
-        function initGrid() {
-            gridContainer.innerHTML = '';
-            for (let col = 1; col <= totalColumns; col++) {
-                const columnBlock = document.createElement('div');
-                columnBlock.className = 'column-block';
-                columnBlock.innerHTML = `<div class="column-title">Dãy ${col}</div>`;
+        function renderGrid() {
+            const grid = document.getElementById('seatingGrid');
+            grid.innerHTML = '';
 
-                const doubleColumn = document.createElement('div');
-                doubleColumn.className = 'double-column';
+            for (let col = 1; col <= 4; col++) {
+                const colDiv = document.createElement('div');
+                colDiv.className = 'grid-column';
+                
+                const colHeader = document.createElement('div');
+                colHeader.className = 'column-header';
+                colHeader.innerText = `DÃY ${col}`;
+                colDiv.appendChild(colHeader);
 
-                for (let row = 1; row <= totalRows; row++) {
-                    ['A', 'B'].forEach(pos => {
-                        const deskId = `${col}-${row}-${pos}`;
-                        const deskCard = document.createElement('div');
-                        deskCard.className = 'desk-card';
-                        deskCard.id = `desk-${deskId}`;
-                        deskCard.onclick = () => openModal(deskId, `${row}-${pos}`);
+                // Lấy 6 bàn cho dãy này
+                const colDesks = desksData.slice((col - 1) * 6, col * 6);
 
-                        updateDeskUI(deskCard, deskId, `${row}-${pos}`);
-                        doubleColumn.appendChild(deskCard);
-                    });
+                colDesks.forEach((desk) => {
+                    const card = document.createElement('div');
+                    card.className = 'desk-card';
+                    card.innerHTML = `
+                        <div class="desk-header">
+                            <span class="desk-title">Bàn ${desk.num} (Dãy ${col})</span>
+                            <button class="btn-plus" onclick="showProfile(${desk.id})">+</button>
+                        </div>
+                        <div class="student-item">
+                            <img class="student-avatar" src="${desk.avatar}" alt="Avatar">
+                            <span class="student-name">${desk.name}</span>
+                        </div>
+                    `;
+                    colDiv.appendChild(card);
+                });
+
+                grid.appendChild(colDiv);
+            }
+        }
+
+        // Xem profile khi bấm dấu +
+        function showProfile(id) {
+            const desk = desksData.find(d => d.id === id);
+            if (!desk) return;
+
+            document.getElementById('modalDeskName').innerText = `BÀN ${desk.num} - DÃY ${desk.row}`;
+            document.getElementById('modalStudentName').innerText = desk.name;
+            document.getElementById('modalImg').src = desk.avatar;
+            document.getElementById('modalHobby').innerText = desk.hobby;
+
+            document.getElementById('profileModal').classList.add('active');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.remove('active');
+        }
+
+        // Chức năng Admin sửa thông tin bàn
+        function openAdminModal() {
+            const password = prompt("Nhập mật khẩu Admin (Tên cầu thủ yêu thích nhất của chủ web):");
+            if (!password) return;
+
+            const cleanPass = password.trim().toLowerCase();
+            if (cleanPass === 'zidane' || cleanPass === 'zinedine zidane') {
+                const deskId = prompt("Nhập số thứ tự bàn muốn chỉnh sửa (Từ 1 đến 24):");
+                const idNum = parseInt(deskId);
+                
+                if (idNum >= 1 && idNum <= 24) {
+                    const currentDesk = desksData.find(d => d.id === idNum);
+                    const newName = prompt("Nhập tên học sinh mới:", currentDesk.name);
+                    const newAvatar = prompt("Nhập đường dẫn link Ảnh đại diện mới (URL):", currentDesk.avatar);
+                    const newHobby = prompt("Nhập sở thích:", currentDesk.hobby);
+
+                    if (newName) currentDesk.name = newName;
+                    if (newAvatar) currentDesk.avatar = newAvatar;
+                    if (newHobby) currentDesk.hobby = newHobby;
+
+                    localStorage.setItem('class_desks_data', JSON.stringify(desksData));
+                    renderGrid();
+                    alert("Cập nhật thông tin thành công!");
+                } else {
+                    alert("Số bàn không hợp lệ!");
                 }
-                columnBlock.appendChild(doubleColumn);
-                gridContainer.appendChild(columnBlock);
-            }
-        }
-
-        // Cập nhật giao diện từng ô bàn
-        function updateDeskUI(card, deskId, label) {
-            const data = deskData[deskId];
-            if (data && data.name) {
-                card.classList.add('has-data');
-                card.innerHTML = `
-                    <span class="desk-number">${label}</span>
-                    <img src="${data.img || 'https://via.placeholder.com/32'}" class="student-avatar-mini">
-                    <span class="student-name-mini">${data.name}</span>
-                `;
             } else {
-                card.classList.remove('has-data');
-                card.innerHTML = `
-                    <span class="desk-number">${label}</span>
-                    <span class="plus-icon">+</span>
-                `;
+                alert("Mật khẩu Admin không chính xác!");
             }
         }
 
-        // Bật/Tắt Chế độ Admin với mật khẩu là tên cầu thủ yêu thích
-        function toggleAdmin() {
-            if (!isAdmin) {
-                const pass = prompt("Nhập mật khẩu Admin (Cầu thủ yêu thích nhất của chủ web là ai?):");
-                if (pass) {
-                    const normalizedPass = pass.trim().toLowerCase();
-                    if (normalizedPass === "zidane" || normalizedPass === "zinedine zidane") {
-                        isAdmin = true;
-                        document.getElementById('admin-toggle').innerText = "Admin: BẬT";
-                        document.getElementById('admin-toggle').classList.add('active');
-                        alert("Đã bật quyền Admin! Bạn có thể chỉnh sửa/thay đổi thông tin các bàn học.");
-                        return;
-                    }
-                }
-                alert("Sai mật khẩu!");
-            } else {
-                isAdmin = false;
-                document.getElementById('admin-toggle').innerText = "Admin: TẮT";
-                document.getElementById('admin-toggle').classList.remove('active');
-            }
-        }
+        // Đóng Modal khi bấm ra ngoài card
+        document.getElementById('profileModal').addEventListener('click', function(e) {
+            if (e.target === this) closeProfileModal();
+        });
 
-        // Mở Modal
-        function openModal(deskId, label) {
-            activeDeskId = deskId;
-            const data = deskData[deskId] || {};
-            const isFilled = !!data.name;
-
-            document.getElementById('modal-title').innerText = `Thông Tin Bàn ${label}`;
-            document.getElementById('input-name').value = data.name || '';
-            document.getElementById('input-hobby').value = data.hobby || '';
-            document.getElementById('img-preview').src = data.img || 'https://via.placeholder.com/120?text=No+Image';
-
-            const canEdit = !isFilled || isAdmin;
-            document.getElementById('input-name').disabled = !canEdit;
-            document.getElementById('input-hobby').disabled = !canEdit;
-            document.getElementById('btn-upload').style.display = canEdit ? 'block' : 'none';
-            document.getElementById('btn-save').style.display = canEdit ? 'block' : 'none';
-
-            document.getElementById('profile-modal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('profile-modal').style.display = 'none';
-        }
-
-        // Xử lý upload ảnh
-        function handleImageUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    document.getElementById('img-preview').src = evt.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Lưu thông tin học sinh
-        function saveProfile() {
-            const name = document.getElementById('input-name').value.trim();
-            const hobby = document.getElementById('input-hobby').value.trim();
-            const img = document.getElementById('img-preview').src;
-
-            if (!name) {
-                alert("Vui lòng nhập Họ tên!");
-                return;
-            }
-
-            deskData[activeDeskId] = { name, hobby, img };
-            const card = document.getElementById(`desk-${activeDeskId}`);
-            const parts = activeDeskId.split('-');
-            updateDeskUI(card, activeDeskId, `${parts[1]}-${parts[2]}`);
-
-            closeModal();
-        }
-
-        // Khởi chạy
-        initGrid();
+        // Chạy khởi tạo giao diện
+        renderGrid();
     </script>
 </body>
 </html>
