@@ -32,7 +32,7 @@
             min-height: 100vh;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1240px; margin: 0 auto; }
 
         /* THANH ĐIỀU HƯỚNG / HEADER */
         .top-nav {
@@ -107,7 +107,7 @@
             transform: translateY(-2px);
         }
 
-        /* KHUNG BẢNG GIẢNG (BẢNG ĐEN CHUẨN TECH) */
+        /* BẢNG GIẢNG */
         .board-banner {
             background: linear-gradient(135deg, rgba(88, 28, 135, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
             border: 1px solid rgba(168, 85, 247, 0.4);
@@ -153,7 +153,7 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 14px;
-            padding: 16px;
+            padding: 14px;
             margin-bottom: 16px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
@@ -170,9 +170,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
 
         .desk-title {
@@ -203,29 +203,42 @@
             transform: scale(1.1);
         }
 
+        .students-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .student-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 6px 0;
+            padding: 4px 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .student-avatar {
-            width: 38px;
-            height: 38px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             object-fit: cover;
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: #1e293b;
+            flex-shrink: 0;
         }
 
         .student-name {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: #f1f5f9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* MODAL LIQUID GLASS HIỂN THỊ PROFILE */
+        /* MODAL LIQUID GLASS HIỂN THỊ PROFILE 2 HỌC SINH */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -247,11 +260,11 @@
         }
 
         .modal-card {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.9);
             border: 1px solid rgba(168, 85, 247, 0.4);
             border-radius: 20px;
             width: 100%;
-            max-width: 600px;
+            max-width: 750px;
             padding: 28px;
             box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
             backdrop-filter: blur(20px);
@@ -277,20 +290,41 @@
 
         .modal-close:hover { color: #ffffff; }
 
-        .modal-body {
+        .modal-header-title {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .modal-students-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .student-profile-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 16px;
             display: flex;
-            gap: 24px;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
         .modal-avatar-box {
-            flex-shrink: 0;
-            width: 140px;
-            height: 140px;
-            border-radius: 16px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
             overflow: hidden;
             border: 2px solid rgba(168, 85, 247, 0.5);
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+            margin-bottom: 12px;
         }
 
         .modal-avatar-box img {
@@ -299,32 +333,23 @@
             object-fit: cover;
         }
 
-        .modal-info { flex: 1; }
-
-        .modal-desk-title {
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
         .modal-student-name {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 10px;
         }
 
         .modal-hobby-box {
+            width: 100%;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
-            padding: 12px;
-            font-size: 0.9rem;
+            padding: 10px;
+            font-size: 0.85rem;
             color: var(--text-sub);
             line-height: 1.5;
+            text-align: left;
         }
 
         .modal-hobby-box strong { color: #f472b6; }
@@ -333,10 +358,9 @@
             .seating-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        @media (max-width: 550px) {
+        @media (max-width: 600px) {
             .seating-grid { grid-template-columns: 1fr; }
-            .modal-body { flex-direction: column; text-align: center; }
-            .modal-avatar-box { width: 120px; height: 120px; margin: 0 auto; }
+            .modal-students-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -361,19 +385,32 @@
         </div>
     </div>
 
-    <!-- MODAL XEM PROFILE -->
+    <!-- MODAL XEM PROFILE CỦA CẢ 2 HỌC SINH -->
     <div class="modal-overlay" id="profileModal">
         <div class="modal-card">
             <button class="modal-close" onclick="closeProfileModal()">&times;</button>
-            <div class="modal-body">
-                <div class="modal-avatar-box">
-                    <img id="modalImg" src="" alt="Student Avatar">
-                </div>
-                <div class="modal-info">
-                    <div class="modal-desk-title" id="modalDeskName">BÀN 1 - DÃY 1</div>
-                    <div class="modal-student-name" id="modalStudentName">Học Sinh</div>
+            <div class="modal-header-title" id="modalDeskName">THÔNG TIN BÀN 1 - DÃY 1</div>
+            
+            <div class="modal-students-grid">
+                <!-- Học sinh 1 -->
+                <div class="student-profile-box">
+                    <div class="modal-avatar-box">
+                        <img id="s1Img" src="" alt="Student 1">
+                    </div>
+                    <div class="modal-student-name" id="s1Name">Học Sinh 1</div>
                     <div class="modal-hobby-box">
-                        <strong>Sở thích:</strong> <span id="modalHobby">Lập trình, bóng đá, nghe nhạc.</span>
+                        <strong>Sở thích:</strong> <span id="s1Hobby">Chưa cập nhật</span>
+                    </div>
+                </div>
+
+                <!-- Học sinh 2 -->
+                <div class="student-profile-box">
+                    <div class="modal-avatar-box">
+                        <img id="s2Img" src="" alt="Student 2">
+                    </div>
+                    <div class="modal-student-name" id="s2Name">Học Sinh 2</div>
+                    <div class="modal-hobby-box">
+                        <strong>Sở thích:</strong> <span id="s2Hobby">Chưa cập nhật</span>
                     </div>
                 </div>
             </div>
@@ -381,18 +418,25 @@
     </div>
 
     <script>
-        // Khởi tạo dữ liệu lớp học mặc định (24 bàn)
+        // Khởi tạo dữ liệu lớp học mặc định (24 bàn, mỗi bàn 2 học sinh)
         const defaultDesks = Array.from({ length: 24 }, (_, i) => ({
             id: i + 1,
             row: Math.floor(i / 6) + 1,
             num: (i % 6) + 1,
-            name: `Học sinh Bàn ${i + 1}`,
-            avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=Student${i + 1}`,
-            hobby: "Yêu thích Tin học, giải mã thuật toán và các hoạt động của Lớp 10 Tin."
+            s1: {
+                name: `Học sinh ${i*2 + 1}`,
+                avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=Student${i*2 + 1}`,
+                hobby: "Thích lập trình Python, chơi bóng đá."
+            },
+            s2: {
+                name: `Học sinh ${i*2 + 2}`,
+                avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=Student${i*2 + 2}`,
+                hobby: "Thích thiết kế web, nghe nhạc, chơi game."
+            }
         }));
 
         // Lấy dữ liệu đã lưu từ LocalStorage hoặc dùng mặc định
-        let desksData = JSON.parse(localStorage.getItem('class_desks_data')) || defaultDesks;
+        let desksData = JSON.parse(localStorage.getItem('class_desks_data_v2')) || defaultDesks;
 
         function renderGrid() {
             const grid = document.getElementById('seatingGrid');
@@ -418,9 +462,15 @@
                             <span class="desk-title">Bàn ${desk.num} (Dãy ${col})</span>
                             <button class="btn-plus" onclick="showProfile(${desk.id})">+</button>
                         </div>
-                        <div class="student-item">
-                            <img class="student-avatar" src="${desk.avatar}" alt="Avatar">
-                            <span class="student-name">${desk.name}</span>
+                        <div class="students-list">
+                            <div class="student-item">
+                                <img class="student-avatar" src="${desk.s1.avatar}" alt="Avatar">
+                                <span class="student-name">${desk.s1.name}</span>
+                            </div>
+                            <div class="student-item">
+                                <img class="student-avatar" src="${desk.s2.avatar}" alt="Avatar">
+                                <span class="student-name">${desk.s2.name}</span>
+                            </div>
                         </div>
                     `;
                     colDiv.appendChild(card);
@@ -430,15 +480,22 @@
             }
         }
 
-        // Xem profile khi bấm dấu +
+        // Xem profile cả 2 HS khi bấm dấu +
         function showProfile(id) {
             const desk = desksData.find(d => d.id === id);
             if (!desk) return;
 
-            document.getElementById('modalDeskName').innerText = `BÀN ${desk.num} - DÃY ${desk.row}`;
-            document.getElementById('modalStudentName').innerText = desk.name;
-            document.getElementById('modalImg').src = desk.avatar;
-            document.getElementById('modalHobby').innerText = desk.hobby;
+            document.getElementById('modalDeskName').innerText = `THÔNG TIN BÀN ${desk.num} - DÃY ${desk.row}`;
+            
+            // HS 1
+            document.getElementById('s1Name').innerText = desk.s1.name;
+            document.getElementById('s1Img').src = desk.s1.avatar;
+            document.getElementById('s1Hobby').innerText = desk.s1.hobby;
+
+            // HS 2
+            document.getElementById('s2Name').innerText = desk.s2.name;
+            document.getElementById('s2Img').src = desk.s2.avatar;
+            document.getElementById('s2Hobby').innerText = desk.s2.hobby;
 
             document.getElementById('profileModal').classList.add('active');
         }
@@ -447,7 +504,7 @@
             document.getElementById('profileModal').classList.remove('active');
         }
 
-        // Chức năng Admin sửa thông tin bàn
+        // Chức năng Admin sửa từng học sinh ở từng bàn
         function openAdminModal() {
             const password = prompt("Nhập mật khẩu Admin (Tên cầu thủ yêu thích nhất của chủ web):");
             if (!password) return;
@@ -459,17 +516,26 @@
                 
                 if (idNum >= 1 && idNum <= 24) {
                     const currentDesk = desksData.find(d => d.id === idNum);
-                    const newName = prompt("Nhập tên học sinh mới:", currentDesk.name);
-                    const newAvatar = prompt("Nhập đường dẫn link Ảnh đại diện mới (URL):", currentDesk.avatar);
-                    const newHobby = prompt("Nhập sở thích:", currentDesk.hobby);
+                    const pos = prompt("Bạn muốn sửa Học Sinh 1 hay Học Sinh 2? (Nhập '1' hoặc '2'):");
 
-                    if (newName) currentDesk.name = newName;
-                    if (newAvatar) currentDesk.avatar = newAvatar;
-                    if (newHobby) currentDesk.hobby = newHobby;
+                    if (pos === '1' || pos === '2') {
+                        const studentKey = pos === '1' ? 's1' : 's2';
+                        const currentStudent = currentDesk[studentKey];
 
-                    localStorage.setItem('class_desks_data', JSON.stringify(desksData));
-                    renderGrid();
-                    alert("Cập nhật thông tin thành công!");
+                        const newName = prompt(`[Bàn ${idNum} - HS ${pos}] Nhập Họ và Tên:`, currentStudent.name);
+                        const newAvatar = prompt(`[Bàn ${idNum} - HS ${pos}] Nhập URL Ảnh đại diện:`, currentStudent.avatar);
+                        const newHobby = prompt(`[Bàn ${idNum} - HS ${pos}] Nhập Sở thích:`, currentStudent.hobby);
+
+                        if (newName) currentStudent.name = newName;
+                        if (newAvatar) currentStudent.avatar = newAvatar;
+                        if (newHobby) currentStudent.hobby = newHobby;
+
+                        localStorage.setItem('class_desks_data_v2', JSON.stringify(desksData));
+                        renderGrid();
+                        alert(`Đã cập nhật thông tin thành công cho Học Sinh ${pos} - Bàn ${idNum}!`);
+                    } else {
+                        alert("Vị trí lựa chọn không hợp lệ!");
+                    }
                 } else {
                     alert("Số bàn không hợp lệ!");
                 }
@@ -483,7 +549,7 @@
             if (e.target === this) closeProfileModal();
         });
 
-        // Chạy khởi tạo giao diện
+        // Khởi tạo giao diện
         renderGrid();
     </script>
 </body>
