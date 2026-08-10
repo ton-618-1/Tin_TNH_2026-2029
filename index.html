@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Tiêu đề trang & Meta xem trước khi chia sẻ link -->
-    <title>Lớp Tin - Tech Portfolio</title>
-    <meta property="og:title" content="Lớp Tin - Tech Portfolio">
-    <meta property="og:description" content="Trang web quản lý sơ đồ lớp học, điểm danh và trang cá nhân Lớp Tin">
-    <meta name="description" content="Trang web quản lý sơ đồ lớp học, điểm danh và trang cá nhân Lớp Tin">
+    <title>Lớp 10 Tin - Tech Portfolio</title>
+    <meta property="og:title" content="Lớp 10 Tin - Tech Portfolio">
+    <meta property="og:description" content="Trang web quản lý sơ đồ lớp học, điểm danh và trang cá nhân Lớp 10 Tin">
+    <meta name="description" content="Trang web quản lý sơ đồ lớp học, điểm danh và trang cá nhân Lớp 10 Tin">
 
     <style>
         :root {
@@ -36,21 +36,73 @@
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             color: var(--text-main); 
-            padding: 50px 20px; 
+            padding: 40px 20px; 
             min-height: 100vh;
         }
 
         .container { max-width: 1100px; margin: 0 auto; }
 
-        .section-title {
-            font-size: 1.6rem;
+        /* KHUNG THÔNG TIN LỚP 10 TIN */
+        .class-banner {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 36px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+        }
+
+        .class-tag {
+            display: inline-block;
+            font-size: 0.8rem;
             font-weight: 800;
-            margin-bottom: 28px;
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .class-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .class-subtitle {
+            color: var(--text-sub);
+            font-size: 1rem;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 12px;
             color: #ffffff;
-            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
             letter-spacing: 0.5px;
         }
 
@@ -183,13 +235,21 @@
 
         @media (max-width: 900px) {
             .cards-grid { grid-template-columns: 1fr; }
+            .class-title { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2 class="section-title"><span>&gt;_</span> Lớp Tin - System Portal</h2>
+        <!-- KHUNG BẢNG LỚP 10 TIN -->
+        <div class="class-banner">
+            <span class="class-tag">OFFICIAL CLASS PORTAL</span>
+            <h1 class="class-title">LỚP 10 TIN</h1>
+            <p class="class-subtitle">&lt; SYSTEM_PORTAL // CLASS_MANAGEMENT &gt;</p>
+        </div>
+
+        <h2 class="section-title"><span>&gt;_</span> Danh Sách Chức Năng</h2>
 
         <div class="cards-grid">
             <!-- Thẻ 1: Dự án & Code (Coming Soon) -->
@@ -211,7 +271,7 @@
                         <h3 class="card-title">Mạng xã hội</h3>
                         <span class="badge-cs">Coming Soon</span>
                     </div>
-                    <p class="card-desc">Cổng kết nối đa nền tảng và kênh liên hệ chính thức của các thành viên Lớp Tin.</p>
+                    <p class="card-desc">Cổng kết nối đa nền tảng và kênh liên hệ chính thức của các thành viên Lớp 10 Tin.</p>
                 </div>
                 <a href="#" class="btn-action btn-disabled">Coming Soon &rarr;</a>
             </div>
