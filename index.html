@@ -12,17 +12,14 @@
 
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --card-border: #1e293b;
-            --primary-glow: #38bdf8;
+            --bg-color: #080b14;
+            --primary-glow: #a855f7;
             --accent-cyan: #06b6d4;
+            --accent-magenta: #ec4899;
             --accent-green: #10b981;
             --accent-amber: #f59e0b;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --disabled-bg: #1e293b;
-            --disabled-text: #64748b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
@@ -30,10 +27,10 @@
         body { 
             background-color: var(--bg-color); 
             background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.15) 0px, transparent 40%),
+                radial-gradient(at 90% 90%, rgba(6, 182, 212, 0.12) 0px, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             color: var(--text-main); 
             padding: 40px 20px; 
@@ -42,16 +39,19 @@
 
         .container { max-width: 1100px; margin: 0 auto; }
 
-        /* KHUNG THÔNG TIN LỚP 10 TIN */
+        /* KHUNG LỚP 10 TIN - TÔNG MÀU CYBER VIOLET / MAGENTA */
         .class-banner {
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            border-radius: 20px;
-            padding: 32px;
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 24px;
+            padding: 36px 28px;
             margin-bottom: 36px;
             text-align: center;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 
+                0 8px 32px 0 rgba(112, 26, 117, 0.25),
+                inset 0 0 15px rgba(168, 85, 247, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -59,40 +59,49 @@
         .class-banner::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+            top: 0; left: -50%; width: 200%; height: 2px;
+            background: linear-gradient(90deg, transparent, #ec4899, #a855f7, #3b82f6, transparent);
+            animation: borderSlide 4s linear infinite;
+        }
+
+        @keyframes borderSlide {
+            0% { transform: translateX(-30%); }
+            100% { transform: translateX(30%); }
         }
 
         .class-tag {
             display: inline-block;
             font-size: 0.8rem;
             font-weight: 800;
-            color: var(--accent-cyan);
-            background: rgba(6, 182, 212, 0.1);
-            padding: 4px 14px;
+            color: #f472b6;
+            background: rgba(236, 72, 153, 0.12);
+            padding: 5px 16px;
             border-radius: 20px;
-            border: 1px solid rgba(6, 182, 212, 0.3);
+            border: 1px solid rgba(236, 72, 153, 0.3);
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 12px;
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
         }
 
         .class-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #f472b6 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
             margin-bottom: 8px;
         }
 
         .class-subtitle {
-            color: var(--text-sub);
-            font-size: 1rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
             font-family: monospace;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            opacity: 0.85;
         }
 
         .section-title {
@@ -107,7 +116,7 @@
         }
 
         .section-title span {
-            color: var(--primary-glow);
+            color: var(--accent-magenta);
             font-family: monospace;
         }
 
@@ -117,40 +126,52 @@
             gap: 24px;
         }
 
+        /* CARD PHONG CÁCH LIQUID GLASS */
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
             padding: 28px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Thẻ Điểm Danh - Hoạt động */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* Thẻ Hoạt động */
         .card.active-feature {
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+            border-color: rgba(168, 85, 247, 0.3);
         }
 
         .card.active-feature:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-glow);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.25);
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 
+                0 15px 35px rgba(168, 85, 247, 0.2),
+                inset 0 0 15px rgba(255, 255, 255, 0.05);
         }
 
         /* Thẻ chưa ra mắt */
         .card.coming-soon {
-            opacity: 0.7;
+            opacity: 0.65;
         }
 
         .card.coming-soon:hover {
-            border-color: #334155;
             opacity: 0.85;
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
         .card-title-box {
@@ -167,7 +188,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* Badge phong cách Cyber */
         .badge-cs {
             background: rgba(245, 158, 11, 0.15);
             color: var(--accent-amber);
@@ -190,7 +210,7 @@
             border: 1px solid rgba(16, 185, 129, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
         }
 
         .card-desc {
@@ -200,36 +220,59 @@
             margin-bottom: 28px;
         }
 
-        /* Nút phong cách Tech/Neon */
+        /* NÚT BẤM LIQUID GLASS (THỦY TINH LỎNG) */
         .btn-action {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 12px 18px;
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            padding: 13px 20px;
+            background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
             font-weight: 700;
             font-size: 0.95rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-action::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .btn-action:hover {
-            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
-            transform: scale(1.02);
+            background: rgba(168, 85, 247, 0.25);
+            border-color: rgba(236, 72, 153, 0.5);
+            color: #ffffff;
+            box-shadow: 
+                0 0 25px rgba(168, 85, 247, 0.5),
+                inset 0 1px 2px rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-action:hover::after {
+            opacity: 1;
         }
 
         .btn-disabled {
-            background: var(--disabled-bg);
-            color: var(--disabled-text);
+            background: rgba(255, 255, 255, 0.02);
+            color: #475569;
             cursor: not-allowed;
             pointer-events: none;
-            border: 1px solid #334155;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: none;
         }
 
@@ -242,7 +285,7 @@
 <body>
 
     <div class="container">
-        <!-- KHUNG BẢNG LỚP 10 TIN -->
+        <!-- KHUNG BẢNG LỚP 10 TIN (CYBER VIOLET) -->
         <div class="class-banner">
             <span class="class-tag">OFFICIAL CLASS PORTAL</span>
             <h1 class="class-title">LỚP 10 TIN</h1>
