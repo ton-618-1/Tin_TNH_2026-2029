@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lớp 10 Tin - Trang Chủ</title>
+    <title>Lớp 10 Tin - Tech Portfolio</title>
     
     <style>
         :root {
-            --bg-color: #080b14;
-            --primary-glow: #a855f7;
-            --accent-cyan: #06b6d4;
-            --accent-magenta: #ec4899;
+            --bg-color: #060913;
+            --card-bg: rgba(18, 24, 38, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-pink: #ec4899;
+            --primary-purple: #a855f7;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
         }
@@ -20,197 +23,243 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.15) 0px, transparent 40%),
-                radial-gradient(at 90% 90%, rgba(6, 182, 212, 0.12) 0px, transparent 40%),
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+                radial-gradient(at 50% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
             color: var(--text-main);
-            padding: 30px 20px 60px 20px;
             min-height: 100vh;
-        }
-
-        .container { max-width: 1000px; margin: 0 auto; }
-
-        /* THANH HEADER NAV */
-        .top-nav {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            padding: 16px 24px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            justify-content: center;
+            padding: 40px 20px;
         }
 
-        .nav-brand {
-            font-size: 1.3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .container {
+            width: 100%;
+            max-width: 1000px;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 8px 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background: rgba(168, 85, 247, 0.2);
-            color: #ffffff;
-            border-color: rgba(168, 85, 247, 0.5);
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-        }
-
-        .social-btn {
-            background: rgba(6, 182, 212, 0.1);
-            border-color: rgba(6, 182, 212, 0.3);
-            color: #38bdf8;
-        }
-
-        .social-btn:hover {
-            background: rgba(6, 182, 212, 0.25);
-            border-color: rgba(6, 182, 212, 0.6);
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-        }
-
-        /* HERO BANNER */
-        .hero-banner {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, rgba(88, 28, 135, 0.2) 0%, rgba(15, 23, 42, 0.6) 100%);
+        /* BANNER CHÍNH */
+        .hero-card {
+            background: rgba(18, 24, 38, 0.5);
             border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 24px;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
             margin-bottom: 40px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 20px;
+            margin-bottom: 16px;
         }
 
         .hero-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #ec4899 100%);
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 30%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 12px;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
             color: var(--text-sub);
-            margin-bottom: 30px;
+            letter-spacing: 1px;
         }
 
-        .action-cards {
+        /* DANH SÁCH CHỨC NĂNG */
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header span {
+            color: var(--primary-pink);
+        }
+
+        .grid-cards {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 24px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
         }
 
-        .card:hover {
+        .feature-card:hover {
+            border-color: rgba(168, 85, 247, 0.4);
             transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.5);
-            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.25);
-            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .card-icon {
-            font-size: 2rem;
+        .card-top {
+            margin-bottom: 24px;
+        }
+
+        .card-header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 12px;
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 6px;
+        }
+
+        .badge-status {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-status.online {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-status.coming {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-orange);
+            border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
         .card-desc {
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             color: var(--text-sub);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        @media (max-width: 768px) {
-            .action-cards { grid-template-columns: 1fr; }
-            .top-nav { flex-direction: column; gap: 12px; }
-            .hero-title { font-size: 2rem; }
+        /* NÚT THAO TÁC */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action.active {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .btn-action.active:hover {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-action.disabled {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #475569;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 900px) {
+            .grid-cards { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- THANH HEADER -->
-        <div class="top-nav">
-            <div class="nav-brand">LỚP 10 TIN</div>
-            <div class="nav-links">
-                <a href="profile.html" class="nav-btn">🪑 Sơ Đồ Lớp</a>
-                <a href="https://www.facebook.com/people/%C3%81nh-Sao-C%C3%B4ng-Ngh%E1%BB%87/61592780566907/?rdid=Tti9Kyp5nebIYgSm&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18CEgbfN7V%2F" target="_blank" class="nav-btn social-btn">
-                    🌐 Mạng Xã Hội
+        <!-- BANNER TỔNG -->
+        <div class="hero-card">
+            <div class="hero-badge">OFFICIAL CLASS PORTAL</div>
+            <h1 class="hero-title">LỚP 10 TIN</h1>
+            <div class="hero-subtitle">&lt; SYSTEM_PORTAL // CLASS_MANAGEMENT &gt;</div>
+        </div>
+
+        <!-- DANH SÁCH CHỨC NĂNG -->
+        <div class="section-header">
+            <span>&gt;_</span> Danh Sách Chức Năng
+        </div>
+
+        <div class="grid-cards">
+            <!-- THẺ 1: DỰ ÁN & CODE -->
+            <div class="feature-card">
+                <div class="card-top">
+                    <div class="card-header-flex">
+                        <div class="card-title">Dự án & Code</div>
+                        <span class="badge-status coming">COMING SOON</span>
+                    </div>
+                    <p class="card-desc">Tổng hợp các dự án lập trình, kho lưu trữ mã nguồn và các sản phẩm công nghệ cá nhân.</p>
+                </div>
+                <button class="btn-action disabled" disabled>Coming Soon &rarr;</button>
+            </div>
+
+            <!-- THẺ 2: MẠNG XÃ HỘI (ĐÃ MỞ LINK) -->
+            <div class="feature-card">
+                <div class="card-top">
+                    <div class="card-header-flex">
+                        <div class="card-title">Mạng xã hội</div>
+                        <span class="badge-status online">ONLINE</span>
+                    </div>
+                    <p class="card-desc">Cổng kết nối đa nền tảng và kênh liên hệ chính thức của các thành viên Lớp 10 Tin.</p>
+                </div>
+                <a href="https://www.facebook.com/people/%C3%81nh-Sao-C%C3%B4ng-Ngh%E1%BB%87/61592780566907/?rdid=Tti9Kyp5nebIYgSm&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18CEgbfN7V%2F" target="_blank" class="btn-action active">
+                    Truy Cập Ngay &rarr;
                 </a>
             </div>
-        </div>
 
-        <!-- HERO BANNER -->
-        <div class="hero-banner">
-            <h1 class="hero-title">Chào Mừng Đến Với Lớp 10 Tin</h1>
-            <p class="hero-subtitle">Hệ thống quản lý sơ đồ lớp học và thông tin học sinh trực tuyến.</p>
-        </div>
-
-        <!-- DANH MỤC THAO TÁC -->
-        <div class="action-cards">
-            <a href="profile.html" class="card">
-                <div class="card-icon">🪑</div>
-                <div class="card-title">Sơ Đồ Chỗ Ngồi & Profile</div>
-                <div class="card-desc">Xem vị trí chỗ ngồi 4 dãy bàn và cập nhật thông tin cá nhân của từng học sinh.</div>
-            </a>
-
-            <a href="https://www.facebook.com/people/%C3%81nh-Sao-C%C3%B4ng-Ngh%E1%BB%87/61592780566907/?rdid=Tti9Kyp5nebIYgSm&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18CEgbfN7V%2F" target="_blank" class="card">
-                <div class="card-icon">🌐</div>
-                <div class="card-title">Trang Mạng Xã Hội</div>
-                <div class="card-desc">Truy cập nhanh vào trang Facebook chính thức của lớp / Ánh Sao Công Nghệ.</div>
-            </a>
+            <!-- THẺ 3: ĐIỂM DANH & PROFILE -->
+            <div class="feature-card">
+                <div class="card-top">
+                    <div class="card-header-flex">
+                        <div class="card-title">Điểm Danh & Profile</div>
+                        <span class="badge-status online">ONLINE</span>
+                    </div>
+                    <p class="card-desc">Sơ đồ tương tác 4 dãy bàn học, hệ thống quản lý điểm danh sĩ số và dữ liệu profile học sinh.</p>
+                </div>
+                <a href="profile.html" class="btn-action active">
+                    Truy Cập Sơ Đồ &rarr;
+                </a>
+            </div>
         </div>
     </div>
 
